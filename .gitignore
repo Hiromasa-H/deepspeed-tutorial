@@ -341,4 +341,4 @@ venv/
 
 .python-version
 
-~/cifar10/data/*
+cifar10/data/*
