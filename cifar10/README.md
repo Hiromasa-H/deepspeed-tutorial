@@ -45,7 +45,7 @@ cuda:0
 
 ## DeepSpeed化
 
-### モデルにDeepSpeedの引数を適用する
+### 1.モデルにDeepSpeedの引数を適用する
 ```python
 import argparse
 import deepspeed
@@ -77,17 +77,98 @@ def add_argument():
     return args
 ```
 
-### Initialization
-`deepspeed.initialize`を使って、`model_engine`,`optimizer`,`trainlaoder`を作成する。
+### 2.DeepSpeedをinitializeする
+
 ```python
-def initialize(args,
-               model,
-               optimizer=None,
-               model_params=None,
-               training_data=None,
-               lr_scheduler=None,
-               mpu=None,
-               dist_init_required=True,
-               collate_fn=None):
+
+...
+
+# 学習データの定義
+trainset = torchvision.datasets.CIFAR10(root='./data',
+                                        train=True,
+                                        download=True,
+                                        transform=transform)
+
+...
+
+# モデルのインスタンス化
+net = Net()
+
+...
+
+# netのパラメータのうち、誤差逆伝播を必要とするパラメータを抽出
+parameters = filter(lambda p: p.requires_grad, net.parameters())
+
+# モデルにDeepSpeedの引数を適用する
+args=add_argument()
+
+# DeepSpeedをinitalizeすることで以下の要素が使えるようにする
+# 1) modelの分散処理
+# 2) data loaderの分散処理
+# 3) optimizerの分散処理
+# 要するにZeROアルゴリズムを使うためにはこれらをする必要があるってことだと思う
+model_engine, optimizer, trainloader, _ = deepspeed.initialize(args=args, model=net, model_parameters=parameters, training_data=trainset)
+
+```
+※`filter()`関数は、与えられたシーケンスの各要素をフィルターする関数。第一引数に各要素に対して`True`か`False`を返す関数が、第二引数にはシーケンスが入る。
+
+また、DeepSpeedのinitialize後は、元々あった`device`と`optimizer`は必要なくなるので、行を消すか、コメントアウトをする必要が出てくる。
+```python
+# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+# net.to(device)
+
+# optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 ```
 
+### 3. 学習API
+`deepspeed.initialize`によって返された`model`は、訓練のために用いる*DeepSpeed Model Engine*である。
+```python
+for i, data in enumerate(trainloader):
+    # get the inputs; data is a list of [inputs, labels]
+    inputs = data[0].to(model_engine.device)
+    labels = data[1].to(model_engine.device)
+
+    outputs = model_engine(inputs)
+    loss = critierion(outputs,labels)
+
+    model_engine.backwards(loss)
+    model_engine.step()
+```
+※ DeepSpeedでは、微分値の初期化は、パラメータ更新後に自動で行われる。
+
+### 4. ds_config.json
+次に、`deepspeed`のパラメータを保持した`ds_config.json`ファイルを書く。
+```json
+{
+   "train_batch_size": 4,
+   "steps_per_print": 2000,
+   "optimizer": {
+     "type": "Adam",
+     "params": {
+       "lr": 0.001,
+       "betas": [
+         0.8,
+         0.999
+       ],
+       "eps": 1e-8,
+       "weight_decay": 3e-7
+     }
+   },
+   "scheduler": {
+     "type": "WarmupLR",
+     "params": {
+       "warmup_min_lr": 0,
+       "warmup_max_lr": 0.001,
+       "warmup_num_steps": 1000
+     }
+   },
+   "wall_clock_breakdown": false
+ }
+```
+
+
+### 5. DeepSpeedを使ってCIFAR-10の学習を行う
+以下のコマンドでDeepSpeedを使った学習ができる。DeepSpeedは**検知されたGPUを全て自動的に使う**。
+```bash
+deepspeed cifar10_deepspeed.py --deepspeed_config ds_config.json
+```
