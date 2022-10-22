@@ -342,3 +342,5 @@ venv/
 .python-version
 
 cifar10/data/*
+
+wandb/*
