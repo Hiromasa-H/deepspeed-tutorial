@@ -1,0 +1,191 @@
+[2022-10-22 23:10:37,160] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+Using /tmp/torch_extensions as PyTorch extensions root...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /tmp/torch_extensions/fused_adam/build.ninja...
+Building extension module fused_adam...
+Loading extension module fused_adam...
+Time to load fused_adam op: 0.30909252166748047 seconds
+[2022-10-22 23:10:37,597] [INFO] [logging.py:68:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adam as basic optimizer
+[2022-10-22 23:10:37,598] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2022-10-22 23:10:37,599] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Final Optimizer = adam
+[2022-10-22 23:10:37,599] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = WarmupLR
+[2022-10-22 23:10:37,599] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed LR Scheduler = <deepspeed.runtime.lr_schedules.WarmupLR object at 0x149f44303670>
+[2022-10-22 23:10:37,600] [INFO] [logging.py:68:log_dist] [Rank 0] step=0, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:10:37,600] [INFO] [config.py:1002:print] DeepSpeedEngine configuration:
+[2022-10-22 23:10:37,601] [INFO] [config.py:1006:print]   activation_checkpointing_config  {
+    "partition_activations": false,
+    "contiguous_memory_optimization": false,
+    "cpu_checkpointing": false,
+    "number_checkpoints": null,
+    "synchronize_checkpoint_boundary": false,
+    "profile": false
+}
+[2022-10-22 23:10:37,602] [INFO] [config.py:1006:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2022-10-22 23:10:37,602] [INFO] [config.py:1006:print]   amp_enabled .................. False
+[2022-10-22 23:10:37,602] [INFO] [config.py:1006:print]   amp_params ................... False
+[2022-10-22 23:10:37,603] [INFO] [config.py:1006:print]   autotuning_config ............ {
+    "enabled": false,
+    "start_step": null,
+    "end_step": null,
+    "metric_path": null,
+    "arg_mappings": null,
+    "metric": "throughput",
+    "model_info": null,
+    "results_dir": null,
+    "exps_dir": null,
+    "overwrite": true,
+    "fast": true,
+    "start_profile_step": 3,
+    "end_profile_step": 5,
+    "tuner_type": "gridsearch",
+    "tuner_early_stopping": 5,
+    "tuner_num_trials": 50,
+    "model_info_path": null,
+    "mp_size": 1,
+    "max_train_batch_size": null,
+    "min_train_batch_size": 1,
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03,
+    "min_train_micro_batch_size_per_gpu": 1,
+    "num_tuning_micro_batch_sizes": 3
+}
+[2022-10-22 23:10:37,603] [INFO] [config.py:1006:print]   bfloat16_enabled ............. False
+[2022-10-22 23:10:37,603] [INFO] [config.py:1006:print]   checkpoint_parallel_write_pipeline  False
+[2022-10-22 23:10:37,603] [INFO] [config.py:1006:print]   checkpoint_tag_validation_enabled  True
+[2022-10-22 23:10:37,603] [INFO] [config.py:1006:print]   checkpoint_tag_validation_fail  False
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x149f46bb8f40>
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   communication_data_type ...... None
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   curriculum_enabled ........... False
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   curriculum_params ............ False
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   dataloader_drop_last ......... False
+[2022-10-22 23:10:37,604] [INFO] [config.py:1006:print]   disable_allgather ............ False
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   dump_state ................... False
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   dynamic_loss_scale_args ...... None
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_enabled ........... False
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_gas_boundary_resolution  1
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_layer_num ......... 0
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_max_iter .......... 100
+[2022-10-22 23:10:37,605] [INFO] [config.py:1006:print]   eigenvalue_stability ......... 1e-06
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   eigenvalue_tol ............... 0.01
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   eigenvalue_verbose ........... False
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   elasticity_enabled ........... False
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   flops_profiler_config ........ {
+    "enabled": false,
+    "profile_step": 1,
+    "module_depth": -1,
+    "top_modules": 1,
+    "detailed": true,
+    "output_file": null
+}
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   fp16_auto_cast ............... None
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   fp16_enabled ................. False
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   fp16_master_weights_and_gradients  False
+[2022-10-22 23:10:37,606] [INFO] [config.py:1006:print]   global_rank .................. 0
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   gradient_accumulation_steps .. 1
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   gradient_clipping ............ 0.0
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   gradient_predivide_factor .... 1.0
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   initial_dynamic_scale ........ 4294967296
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   load_universal_checkpoint .... False
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   loss_scale ................... 0
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   memory_breakdown ............. False
+[2022-10-22 23:10:37,607] [INFO] [config.py:1006:print]   monitor_config ............... <deepspeed.monitor.config.DeepSpeedMonitorConfig object at 0x149f46bb8ee0>
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   nebula_config ................ {
+    "enabled": false,
+    "persistent_storage_path": null,
+    "persistent_time_interval": 100,
+    "num_of_version_in_retention": 2,
+    "enable_nebula_load": true,
+    "load_path": null
+}
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   optimizer_legacy_fusion ...... False
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   optimizer_name ............... adam
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   optimizer_params ............. {'lr': 0.001, 'betas': [0.8, 0.999], 'eps': 1e-08, 'weight_decay': 3e-07}
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[2022-10-22 23:10:37,608] [INFO] [config.py:1006:print]   pld_enabled .................. False
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   pld_params ................... False
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   prescale_gradients ........... False
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   scheduler_name ............... WarmupLR
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   scheduler_params ............. {'warmup_min_lr': 0, 'warmup_max_lr': 0.001, 'warmup_num_steps': 1000}
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   sparse_attention ............. None
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   sparse_gradients_enabled ..... False
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   steps_per_print .............. 2000
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   train_batch_size ............. 4
+[2022-10-22 23:10:37,609] [INFO] [config.py:1006:print]   train_micro_batch_size_per_gpu  1
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   wall_clock_breakdown ......... False
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   world_size ................... 4
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   zero_allow_untested_optimizer  False
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   zero_config .................. stage=0 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=False load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   zero_enabled ................. False
+[2022-10-22 23:10:37,610] [INFO] [config.py:1006:print]   zero_optimization_stage ...... 0
+[2022-10-22 23:10:37,611] [INFO] [config.py:991:print_user_config]   json = {
+    "train_batch_size": 4,
+    "steps_per_print": 2.000000e+03,
+    "optimizer": {
+        "type": "Adam",
+        "params": {
+            "lr": 0.001,
+            "betas": [0.8, 0.999],
+            "eps": 1e-08,
+            "weight_decay": 3e-07
+        }
+    },
+    "scheduler": {
+        "type": "WarmupLR",
+        "params": {
+            "warmup_min_lr": 0,
+            "warmup_max_lr": 0.001,
+            "warmup_num_steps": 1000
+        }
+    },
+    "wall_clock_breakdown": false,
+    "wandb": {
+        "enabled": true,
+        "group": "cifar10",
+        "team": "hhiromasa",
+        "project": "deepspeed_test"
+    }
+}
+Using /tmp/torch_extensions as PyTorch extensions root...
+Emitting ninja build file /tmp/torch_extensions/utils/build.ninja...
+Building extension module utils...
+Loading extension module utils...
+Time to load utils op: 0.29681992530822754 seconds
+[2022-10-22 23:10:49,369] [INFO] [logging.py:68:log_dist] [Rank 0] step=2000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:10:49,370] [INFO] [timer.py:198:stop] 0/2000, RunningAvgSamplesPerSec=764.9930971678286, CurrSamplesPerSec=658.0848827175022, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  2000] loss: 1.845
+[2022-10-22 23:11:00,672] [INFO] [logging.py:68:log_dist] [Rank 0] step=4000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:00,673] [INFO] [timer.py:198:stop] 0/4000, RunningAvgSamplesPerSec=765.474869750045, CurrSamplesPerSec=696.9597873047524, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  4000] loss: 1.608
+[2022-10-22 23:11:11,961] [INFO] [logging.py:68:log_dist] [Rank 0] step=6000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:11,962] [INFO] [timer.py:198:stop] 0/6000, RunningAvgSamplesPerSec=765.7317633450713, CurrSamplesPerSec=664.5494731838708, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  6000] loss: 1.522
+[2022-10-22 23:11:23,316] [INFO] [logging.py:68:log_dist] [Rank 0] step=8000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:23,318] [INFO] [timer.py:198:stop] 0/8000, RunningAvgSamplesPerSec=764.7606035678203, CurrSamplesPerSec=778.3445140338669, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  8000] loss: 1.482
+[2022-10-22 23:11:34,502] [INFO] [logging.py:68:log_dist] [Rank 0] step=10000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:34,503] [INFO] [timer.py:198:stop] 0/10000, RunningAvgSamplesPerSec=766.4688728938117, CurrSamplesPerSec=653.9040417819698, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1, 10000] loss: 1.407
+[2022-10-22 23:11:45,856] [INFO] [logging.py:68:log_dist] [Rank 0] step=12000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:45,857] [INFO] [timer.py:198:stop] 0/12000, RunningAvgSamplesPerSec=765.7315829972949, CurrSamplesPerSec=612.5083421561827, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1, 12000] loss: 1.457
+[2022-10-22 23:11:57,310] [INFO] [logging.py:68:log_dist] [Rank 0] step=14000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:11:57,311] [INFO] [timer.py:198:stop] 0/14000, RunningAvgSamplesPerSec=765.1867646436455, CurrSamplesPerSec=705.1027990249643, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  2000] loss: 1.344
+[2022-10-22 23:12:08,709] [INFO] [logging.py:68:log_dist] [Rank 0] step=16000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:12:08,712] [INFO] [timer.py:198:stop] 0/16000, RunningAvgSamplesPerSec=764.355459427431, CurrSamplesPerSec=590.8926848166801, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  4000] loss: 1.313
+[2022-10-22 23:12:20,071] [INFO] [logging.py:68:log_dist] [Rank 0] step=18000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:12:20,072] [INFO] [timer.py:198:stop] 0/18000, RunningAvgSamplesPerSec=764.1751106510956, CurrSamplesPerSec=710.8989830508475, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  6000] loss: 1.284
+[2022-10-22 23:12:31,319] [INFO] [logging.py:68:log_dist] [Rank 0] step=20000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:12:31,320] [INFO] [timer.py:198:stop] 0/20000, RunningAvgSamplesPerSec=764.7058375266757, CurrSamplesPerSec=720.6088823984194, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  8000] loss: 1.283
+[2022-10-22 23:12:42,580] [INFO] [logging.py:68:log_dist] [Rank 0] step=22000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:12:42,581] [INFO] [timer.py:198:stop] 0/22000, RunningAvgSamplesPerSec=765.0610854779501, CurrSamplesPerSec=644.0884520884521, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2, 10000] loss: 1.236
+[2022-10-22 23:12:53,920] [INFO] [logging.py:68:log_dist] [Rank 0] step=24000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 23:12:53,921] [INFO] [timer.py:198:stop] 0/24000, RunningAvgSamplesPerSec=764.9226813116925, CurrSamplesPerSec=757.5389894793877, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2, 12000] loss: 1.303
+Finished Training
+GroundTruth:    cat  ship  ship plane

@@ -1,0 +1,26 @@
+2022-10-22 23:02:41,426 INFO    MainThread:17549 [wandb_setup.py:_flush():68] Configure stats pid to 17549
+2022-10-22 23:02:41,426 INFO    MainThread:17549 [wandb_setup.py:_flush():68] Loading settings from /home/hhiromasa/.config/wandb/settings
+2022-10-22 23:02:41,426 INFO    MainThread:17549 [wandb_setup.py:_flush():68] Loading settings from /home/hhiromasa/code/deepspeed_tutorial/cifar10/wandb/settings
+2022-10-22 23:02:41,427 INFO    MainThread:17549 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'_require_service': 'True'}
+2022-10-22 23:02:41,427 INFO    MainThread:17549 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'cifar10/cifar10_tutorial_copy.py', 'program': 'cifar10_tutorial_copy.py'}
+2022-10-22 23:02:41,427 INFO    MainThread:17549 [wandb_init.py:_log_setup():476] Logging user logs to /home/hhiromasa/code/deepspeed_tutorial/cifar10/wandb/run-20221022_230241-3iz59h2c/logs/debug.log
+2022-10-22 23:02:41,427 INFO    MainThread:17549 [wandb_init.py:_log_setup():477] Logging internal logs to /home/hhiromasa/code/deepspeed_tutorial/cifar10/wandb/run-20221022_230241-3iz59h2c/logs/debug-internal.log
+2022-10-22 23:02:41,427 INFO    MainThread:17549 [wandb_init.py:init():516] calling init triggers
+2022-10-22 23:02:41,428 INFO    MainThread:17549 [wandb_init.py:init():519] wandb.init called with sweep_config: {}
+config: {}
+2022-10-22 23:02:41,428 INFO    MainThread:17549 [wandb_init.py:init():569] starting backend
+2022-10-22 23:02:41,428 INFO    MainThread:17549 [wandb_init.py:init():573] setting up manager
+2022-10-22 23:02:41,436 INFO    MainThread:17549 [backend.py:_multiprocessing_setup():102] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2022-10-22 23:02:41,442 INFO    MainThread:17549 [wandb_init.py:init():580] backend started and connected
+2022-10-22 23:02:41,447 INFO    MainThread:17549 [wandb_init.py:init():658] updated telemetry
+2022-10-22 23:02:41,465 INFO    MainThread:17549 [wandb_init.py:init():693] communicating run to backend with 60 second timeout
+2022-10-22 23:02:44,501 WARNING MsgRouterThr:17549 [router.py:message_loop():77] message_loop has been closed
+2022-10-22 23:02:51,481 ERROR   MainThread:17549 [wandb_init.py:init():1105] error
+Traceback (most recent call last):
+  File "/home/hhiromasa/.pyenv/versions/3.8.5/envs/deepspeed/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 1078, in init
+    run = wi.init()
+  File "/home/hhiromasa/.pyenv/versions/3.8.5/envs/deepspeed/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 697, in init
+    result = handle.wait(
+  File "/home/hhiromasa/.pyenv/versions/3.8.5/envs/deepspeed/lib/python3.8/site-packages/wandb/sdk/lib/mailbox.py", line 259, in wait
+    raise MailboxError("transport failed")
+wandb.errors.MailboxError: transport failed

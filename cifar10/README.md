@@ -8,41 +8,6 @@
 python3 cifar10_tutorial.py
 ```
 
-```
-Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar-10-python.tar.gz
-100%|█████████████████████████████████████████████████████████████████████████| 170498071/170498071 [00:11<00:00, 14509349.19it/s]
-Extracting ./data/cifar-10-python.tar.gz to ./data
-Files already downloaded and verified
-truck   cat truck  deer
-[1,  2000] loss: 2.258
-[1,  4000] loss: 1.921
-[1,  6000] loss: 1.721
-[1,  8000] loss: 1.609
-[1, 10000] loss: 1.525
-[1, 12000] loss: 1.479
-[2,  2000] loss: 1.390
-[2,  4000] loss: 1.380
-[2,  6000] loss: 1.332
-[2,  8000] loss: 1.323
-[2, 10000] loss: 1.307
-[2, 12000] loss: 1.301
-Finished Training
-GroundTruth:    cat  ship  ship plane
-Predicted:    cat plane  ship plane
-Accuracy of the network on the 10000 test images: 55 %
-Accuracy of plane : 75 %
-Accuracy of   car : 71 %
-Accuracy of  bird : 35 %
-Accuracy of   cat : 55 %
-Accuracy of  deer : 52 %
-Accuracy of   dog : 32 %
-Accuracy of  frog : 55 %
-Accuracy of horse : 60 %
-Accuracy of  ship : 63 %
-Accuracy of truck : 49 %
-cuda:0
-```
-
 ## DeepSpeed化
 
 ### 1.モデルにDeepSpeedの引数を適用する

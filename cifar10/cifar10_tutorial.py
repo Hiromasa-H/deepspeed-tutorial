@@ -39,6 +39,9 @@ We will do the following steps in order:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Using ``torchvision``, it’s extremely easy to load CIFAR10.
 """
+
+
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -153,30 +156,33 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 # This is when things start to get interesting.
 # We simply have to loop over our data iterator, and feed the inputs to the
 # network and optimize.
+import wandb
+with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_without_DS'):
+    wandb.watch(net, log='all', log_freq=5)
+    for epoch in range(2):  # loop over the dataset multiple times
+        
+        running_loss = 0.0
+        for i, data in enumerate(trainloader, 0):
+            # get the inputs; data is a list of [inputs, labels]
+            #inputs, labels = data
+            inputs, labels = data[0].to(device), data[1].to(device)
 
-for epoch in range(2):  # loop over the dataset multiple times
+            # zero the parameter gradients
+            optimizer.zero_grad()
 
-    running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
-        # get the inputs; data is a list of [inputs, labels]
-        #inputs, labels = data
-        inputs, labels = data[0].to(device), data[1].to(device)
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
 
-        # zero the parameter gradients
-        optimizer.zero_grad()
-
-        # forward + backward + optimize
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-
-        # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:  # print every 2000 mini-batches
-            print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
+            # print statistics
+            running_loss += loss.item()
+            if i % 2000 == 1999:  # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                    (epoch + 1, i + 1, running_loss / 2000))
+                wandb.log({'loss':running_loss},step=i)                
+                running_loss = 0.0
 
 print('Finished Training')
 

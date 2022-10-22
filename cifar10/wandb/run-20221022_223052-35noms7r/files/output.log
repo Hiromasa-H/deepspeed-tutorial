@@ -1,0 +1,36 @@
+[2022-10-22 22:31:09,496] [INFO] [logging.py:68:log_dist] [Rank 0] step=2000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:31:09,498] [INFO] [timer.py:198:stop] 0/2000, RunningAvgSamplesPerSec=491.47424570098485, CurrSamplesPerSec=142.37284453496267, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  2000] loss: 1.866
+[2022-10-22 22:31:25,993] [INFO] [logging.py:68:log_dist] [Rank 0] step=4000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:31:25,994] [INFO] [timer.py:198:stop] 0/4000, RunningAvgSamplesPerSec=490.4455116125555, CurrSamplesPerSec=168.4831589306875, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  4000] loss: 1.606
+[2022-10-22 22:31:42,386] [INFO] [logging.py:68:log_dist] [Rank 0] step=6000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:31:42,394] [INFO] [timer.py:198:stop] 0/6000, RunningAvgSamplesPerSec=491.04415514735837, CurrSamplesPerSec=153.67409822851596, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  6000] loss: 1.526
+[2022-10-22 22:31:58,859] [INFO] [logging.py:68:log_dist] [Rank 0] step=8000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:31:58,872] [INFO] [timer.py:198:stop] 0/8000, RunningAvgSamplesPerSec=490.7679341810624, CurrSamplesPerSec=135.02898212460462, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1,  8000] loss: 1.474
+[2022-10-22 22:32:15,340] [INFO] [logging.py:68:log_dist] [Rank 0] step=10000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:32:15,341] [INFO] [timer.py:198:stop] 0/10000, RunningAvgSamplesPerSec=490.66015071746074, CurrSamplesPerSec=145.79501885743088, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1, 10000] loss: 1.420
+[2022-10-22 22:32:31,744] [INFO] [logging.py:68:log_dist] [Rank 0] step=12000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:32:31,753] [INFO] [timer.py:198:stop] 0/12000, RunningAvgSamplesPerSec=490.8735969351182, CurrSamplesPerSec=161.1690634696485, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[1, 12000] loss: 1.465
+[2022-10-22 22:32:48,374] [INFO] [logging.py:68:log_dist] [Rank 0] step=14000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:32:48,379] [INFO] [timer.py:198:stop] 0/14000, RunningAvgSamplesPerSec=490.4718167461263, CurrSamplesPerSec=174.85191399776969, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  2000] loss: 1.364
+[2022-10-22 22:33:04,599] [INFO] [logging.py:68:log_dist] [Rank 0] step=16000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:33:04,603] [INFO] [timer.py:198:stop] 0/16000, RunningAvgSamplesPerSec=491.3558407179468, CurrSamplesPerSec=145.99166369355808, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  4000] loss: 1.314
+[2022-10-22 22:33:21,039] [INFO] [logging.py:68:log_dist] [Rank 0] step=18000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:33:21,046] [INFO] [timer.py:198:stop] 0/18000, RunningAvgSamplesPerSec=491.33471354460073, CurrSamplesPerSec=173.94187842783532, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  6000] loss: 1.292
+[2022-10-22 22:33:37,461] [INFO] [logging.py:68:log_dist] [Rank 0] step=20000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:33:37,475] [INFO] [timer.py:198:stop] 0/20000, RunningAvgSamplesPerSec=491.335581011412, CurrSamplesPerSec=143.18084915724344, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2,  8000] loss: 1.298
+[2022-10-22 22:33:53,881] [INFO] [logging.py:68:log_dist] [Rank 0] step=22000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:33:53,881] [INFO] [timer.py:198:stop] 0/22000, RunningAvgSamplesPerSec=491.3974359339829, CurrSamplesPerSec=189.42751332309638, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2, 10000] loss: 1.257
+[2022-10-22 22:34:10,308] [INFO] [logging.py:68:log_dist] [Rank 0] step=24000, skipped=0, lr=[0.001], mom=[[0.8, 0.999]]
+[2022-10-22 22:34:10,309] [INFO] [timer.py:198:stop] 0/24000, RunningAvgSamplesPerSec=491.4005094957261, CurrSamplesPerSec=174.990518904824, MemAllocated=0.0GB, MaxMemAllocated=0.0GB
+[2, 12000] loss: 1.291

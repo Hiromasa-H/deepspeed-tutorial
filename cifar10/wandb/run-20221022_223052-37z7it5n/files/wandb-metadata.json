@@ -1,0 +1,28 @@
+{
+    "os": "Linux-4.15.0-176-generic-x86_64-with-glibc2.17",
+    "python": "3.8.5",
+    "heartbeatAt": "2022-10-22T13:30:52.952954",
+    "startedAt": "2022-10-22T13:30:52.292833",
+    "docker": null,
+    "gpu": "GeForce RTX 2080 Ti",
+    "gpu_count": 4,
+    "cpu_count": 20,
+    "cuda": "10.0.130",
+    "args": [
+        "--local_rank=2",
+        "--deepspeed_config",
+        "ds_config.json"
+    ],
+    "state": "running",
+    "program": "cifar10_tutorial_copy.py",
+    "codePath": "cifar10/cifar10_tutorial_copy.py",
+    "git": {
+        "remote": "https://github.com/Hiromasa-H/deepspeed-tutorial.git",
+        "commit": "dac83f3dcade7d4e017cd523e44c21cf45aaabd3"
+    },
+    "email": "hhiromasa217@gmail.com",
+    "root": "/home/hhiromasa/code/deepspeed_tutorial",
+    "host": "notus",
+    "username": "hhiromasa",
+    "executable": "/home/hhiromasa/.pyenv/versions/3.8.5/envs/deepspeed/bin/python3.8"
+}

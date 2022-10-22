@@ -39,6 +39,12 @@ We will do the following steps in order:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Using ``torchvision``, it’s extremely easy to load CIFAR10.
 """
+# deepspeed mod
+import enum
+from pyexpat import model
+import deepspeed
+from deepspeed_functions import add_argument
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -133,8 +139,16 @@ class Net(nn.Module):
 
 net = Net()
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-net.to(device)
+# deepspeed mod
+parameters = filter(lambda p: p.requires_grad, net.parameters())
+
+args = add_argument()
+
+model_engine, optimizer, trainloader, _ = deepspeed.initialize(args=args,model=net,model_parameters=parameters,training_data=trainset)
+
+
+# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+# net.to(device)
 
 ########################################################################
 # 3. Define a Loss function and optimizer
@@ -144,7 +158,7 @@ net.to(device)
 import torch.optim as optim
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+# optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 ########################################################################
 # 4. Train the network
@@ -154,29 +168,53 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 # We simply have to loop over our data iterator, and feed the inputs to the
 # network and optimize.
 
-for epoch in range(2):  # loop over the dataset multiple times
 
-    running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
-        # get the inputs; data is a list of [inputs, labels]
-        #inputs, labels = data
-        inputs, labels = data[0].to(device), data[1].to(device)
+# import wandb
+# with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_config'):
+#     wandb.watch(net, log='all', log_freq=5)
+if True:
+    for epoch in range(2):  # loop over the dataset multiple times
 
-        # zero the parameter gradients
-        optimizer.zero_grad()
+        running_loss = 0.0
+        for i, data in enumerate(trainloader):
 
-        # forward + backward + optimize
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+            inputs = data[0].to(model_engine.device)
+            labels = data[1].to(model_engine.device)
 
-        # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:  # print every 2000 mini-batches
-            print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
+            outputs = model_engine(inputs)
+            loss = criterion(outputs, labels)
+
+            model_engine.backward(loss)
+            model_engine.step()
+
+            # print statistics
+            running_loss += loss.item()
+            if i % 2000 == 1999:  # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                    (epoch + 1, i + 1, running_loss / 2000))
+                # wandb.log({'loss':running_loss},step=i)
+                running_loss = 0.0
+        
+    # for i, data in enumerate(trainloader, 0):
+    #     # get the inputs; data is a list of [inputs, labels]
+    #     #inputs, labels = data
+    #     inputs, labels = data[0].to(device), data[1].to(device)
+
+    #     # zero the parameter gradients
+    #     optimizer.zero_grad()
+
+    #     # forward + backward + optimize
+    #     outputs = net(inputs)
+    #     loss = criterion(outputs, labels)
+    #     loss.backward()
+    #     optimizer.step()
+
+        # # print statistics
+        # running_loss += loss.item()
+        # if i % 2000 == 1999:  # print every 2000 mini-batches
+        #     print('[%d, %5d] loss: %.3f' %
+        #           (epoch + 1, i + 1, running_loss / 2000))
+        #     running_loss = 0.0
 
 print('Finished Training')
 
