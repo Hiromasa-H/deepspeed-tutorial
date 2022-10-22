@@ -341,4 +341,4 @@ venv/
 
 .python-version
 
-data/*
+~/data/*
