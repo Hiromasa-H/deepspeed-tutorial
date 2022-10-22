@@ -343,4 +343,4 @@ venv/
 
 cifar10/data/*
 
-wandb/*
+cifar10/wandb/*
