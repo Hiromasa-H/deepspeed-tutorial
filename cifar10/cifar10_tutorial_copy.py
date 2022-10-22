@@ -172,11 +172,20 @@ criterion = nn.CrossEntropyLoss()
 # import wandb
 # with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_config'):
 #     wandb.watch(net, log='all', log_freq=5)
+
+from deepspeed.monitor.monitor import MonitorMaster
+from deepspeed.runtime.config import DeepSpeedConfig
+import time
+
+ds_config = DeepSpeedConfig('ds_config.json')
+monitor = MonitorMaster(ds_config.monitor_config)
+
 if True:
     for epoch in range(2):  # loop over the dataset multiple times
 
         running_loss = 0.0
         for i, data in enumerate(trainloader):
+            pre = time.time()
 
             inputs = data[0].to(model_engine.device)
             labels = data[1].to(model_engine.device)
@@ -187,12 +196,20 @@ if True:
             model_engine.backward(loss)
             model_engine.step()
 
+            post = time.time()
+
             # print statistics
             running_loss += loss.item()
+
             if i % 2000 == 1999:  # print every 2000 mini-batches
                 print('[%d, %5d] loss: %.3f' %
                     (epoch + 1, i + 1, running_loss / 2000))
                 # wandb.log({'loss':running_loss},step=i)
+                events = [('time per step', post - pre,model_engine.global_samples),
+                      ('loss', running_loss / 2000,model_engine.global_samples)] 
+                    #   ('learning_rate', model_engine.lr,model_engine.global_samples),
+                    #   ('gradient_norm', model_engine.gradient_norm,model_engine.global_samples)]
+                monitor.write_events(events)
                 running_loss = 0.0
         
     # for i, data in enumerate(trainloader, 0):

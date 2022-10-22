@@ -21,12 +21,12 @@
         "warmup_num_steps": 1000
       }
     },
-    "wall_clock_breakdown": false//,
-    // "wandb": {
-    //     "enabled": true,
-    //     "group": "cifar10",
-    //     "team": "hhiromasa",
-    //     "project": "deepspeed_test"
-    //   }
+    "wall_clock_breakdown": false,
+    "wandb": {
+        "enabled": true,
+        "group": "cifar10",
+        "team": "hhiromasa",
+        "project": "deepspeed_test"
+      }
   }
  
