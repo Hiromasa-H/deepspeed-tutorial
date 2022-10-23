@@ -10,6 +10,11 @@ pyenv local deepspeed
 pip install deepspseed
 ```
 
+合うバージョンのtorchをインストール
+```
+pip install torch==1.4.0 torchvision==0.5.0 -f https://download.pytorch.org/whl/cu100/torch_stable.html
+```
+
 インストールができたことの確認
 ```
 ds_report
