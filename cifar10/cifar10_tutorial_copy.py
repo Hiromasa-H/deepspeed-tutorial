@@ -183,9 +183,11 @@ import wandb
 # if True:
 if args.local_rank == 0:
     print('initializing wandb run...')
-    wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb')
+    wandb.init(project='deepspeed_test',group='cifar10')#,name='cifar10_with_DS_wandb')
     print('done!')
-    
+    print('setting run name...')
+    wandb.run.name = 'cifar10_with_DS_wandb'
+    print('done!')
 
 # with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb'):
 
@@ -243,6 +245,11 @@ for epoch in range(2):  # loop over the dataset multiple times
 
 print('Finished Training')
 
+if args.local_rank == 0:
+    print('saving run...')
+    wandb.run.save()
+    print('done!')
+
 ########################################################################
 # Let's quickly save our trained model:
 
@@ -293,6 +300,8 @@ _, predicted = torch.max(outputs, 1)
 
 print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
 
+print('print for debugging')
+
 ########################################################################
 # The results seem pretty good.
 #
@@ -303,7 +312,8 @@ total = 0
 with torch.no_grad():
     for data in testloader:
         images, labels = data
-        outputs = net(images)
+        images, labels = images.to(model_engine.device), labels.to(model_engine.device)
+        outputs = model_engine(images)
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
