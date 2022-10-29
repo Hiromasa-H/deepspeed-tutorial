@@ -137,3 +137,7 @@ for i, data in enumerate(trainloader):
 ```bash
 deepspeed cifar10_deepspeed.py --deepspeed_config ds_config.json
 ```
+
+```bash
+deepspeed cifar10_tutorial_copy.py --deepspeed_config ds_config.json
+```

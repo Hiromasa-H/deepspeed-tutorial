@@ -181,7 +181,7 @@ import wandb
 # monitor = MonitorMaster(ds_config.monitor_config)
 
 # if True:
-if torch.distributed.get_rank() == 0:
+if args.local_rank == 0:
     wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb')
 
 # with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb'):
@@ -213,7 +213,7 @@ if True:
                 # events = [('time per step', post - pre,model_engine.global_samples),
                 #       ('loss', running_loss / 2000,model_engine.global_samples)]
                 # monitor.write_events(events)
-                if torch.distributed.get_rank() == 0:
+                if args.local_rank == 0:
                     wandb.log({'loss':running_loss / 2000},step=i)
                 running_loss = 0.0
         
