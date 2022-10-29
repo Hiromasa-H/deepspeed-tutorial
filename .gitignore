@@ -344,3 +344,7 @@ venv/
 cifar10/data/*
 
 cifar10/wandb/*
+
+cifar10/*.pth
+*.pth
+# cifar10/cifar_net.pth
