@@ -182,40 +182,43 @@ import wandb
 
 # if True:
 if args.local_rank == 0:
+    print('initializing wandb run...')
     wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb')
+    print('done!')
+    
 
 # with wandb.init(project='deepspeed_test',group='cifar10',name='cifar10_with_DS_wandb'):
-if True:
-    for epoch in range(2):  # loop over the dataset multiple times
 
-        running_loss = 0.0
-        for i, data in enumerate(trainloader):
-            # pre = time.time()
+for epoch in range(2):  # loop over the dataset multiple times
 
-            inputs = data[0].to(model_engine.device)
-            labels = data[1].to(model_engine.device)
+    running_loss = 0.0
+    for i, data in enumerate(trainloader):
+        # pre = time.time()
 
-            outputs = model_engine(inputs)
-            loss = criterion(outputs, labels)
+        inputs = data[0].to(model_engine.device)
+        labels = data[1].to(model_engine.device)
 
-            model_engine.backward(loss)
-            model_engine.step()
+        outputs = model_engine(inputs)
+        loss = criterion(outputs, labels)
 
-            # post = time.time()
+        model_engine.backward(loss)
+        model_engine.step()
 
-            # print statistics
-            running_loss += loss.item()
+        # post = time.time()
 
-            if i % 2000 == 1999:  # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                # wandb.log({'loss':running_loss},step=i)
-                # events = [('time per step', post - pre,model_engine.global_samples),
-                #       ('loss', running_loss / 2000,model_engine.global_samples)]
-                # monitor.write_events(events)
-                if args.local_rank == 0:
-                    wandb.log({'loss':running_loss / 2000},step=i)
-                running_loss = 0.0
+        # print statistics
+        running_loss += loss.item()
+
+        if i % 2000 == 1999:  # print every 2000 mini-batches
+            print('[%d, %5d] loss: %.3f' %
+                (epoch + 1, i + 1, running_loss / 2000))
+            # wandb.log({'loss':running_loss},step=i)
+            # events = [('time per step', post - pre,model_engine.global_samples),
+            #       ('loss', running_loss / 2000,model_engine.global_samples)]
+            # monitor.write_events(events)
+            if args.local_rank == 0:
+                wandb.log({'loss':running_loss / 2000},step=i)
+            running_loss = 0.0
         
     # for i, data in enumerate(trainloader, 0):
     #     # get the inputs; data is a list of [inputs, labels]
